@@ -1,18 +1,12 @@
-from nltk.tokenize import sent_tokenize, word_tokenize
-from nltk import pos_tag, RegexpParser
+from nltk.tokenize import word_tokenize
+from nltk import pos_tag
 
-with open('a.txt') as f: x = f.read().lower()
-sent = sent_tokenize(x)[0]
+sent = 'The quick brown fox jumps over the lazy dog.'
 
 tokens = word_tokenize(sent)
-pos_tags = pos_tag(tokens)
+tags = pos_tag(tokens)
 
 
-GRAMMER = r'NP: {<DT>?<JJ>*<NN.*>+}'
-chunk_parser = RegexpParser(GRAMMER)
-
-chunk_tree = chunk_parser.parse(pos_tags)
-
-print(pos_tags)
-print(chunk_tree)
-
+print(f'{'Words':<15} {'Tags'}')
+for word, tag in tags:
+    print(f'{word:<15} {tag}')
